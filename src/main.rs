@@ -16,6 +16,7 @@ fn main() {
    
 let opciones = 2;
 let conceptos =  vec!["Neto","IVA","Bruto"];
+let definicion = vec!["El valor Neto es el monto base antes del IVA.","El IVA es el impuesto agregado al valor neto.", "El valor Bruto es el total después de aplicar el IVA."];
 
 match opciones {
     1 => {
@@ -31,8 +32,8 @@ match opciones {
         println!("Neto: $ {}, IVA: $ {}, Bruto: $ {}", neto, iva_p, bruto);
     }
     2 => {
-        for concepto in &conceptos {
-            println!("- {:?}", concepto);
+        for (concepto, definicion) in conceptos.iter().zip(definicion.iter()) {
+            println!("- {:?}: {}", concepto, definicion);
         }
     }
     _ => {
