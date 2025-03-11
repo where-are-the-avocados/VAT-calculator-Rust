@@ -9,30 +9,35 @@ fn calcular_iva(neto: f64, iva: f64) -> f64 {
         std::process::exit(0);
     } else {
         return neto * iva;  
-    }
+    } 
 }
 
 fn main() {
-    let mut input = String::new();
-    println!("Introduce el valor neto: ");
-
-    let _ = io::stdin().read_line(&mut input);
-    let neto: f64 = input.trim().parse().expect("Ingresa un número válido");
    
-    let iva = 0.19;   
-    let iva_p = calcular_iva(neto, iva);
-    let bruto = neto + iva_p;
-    
-    println!("Neto: $ {}, IVA: $ {}, Bruto: $ {}", neto, iva_p, bruto);
-    
-let conceptos = vec!["Neto, IVA, Bruto"];
+let opciones = 2;
+let conceptos =  vec!["Neto","IVA","Bruto"];
 
-for concepto in conceptos.clone().into_iter() {
-    match concepto {
-        "Neto" => println!("Existen distintos conceptos en tributaria"),
-        _ => println!("Por ejemplo {}", concepto)
+match opciones {
+    1 => {
+        let mut input = String::new();
+        println!("Introduce el valor neto: ");
+        let _ = io::stdin().read_line(&mut input);
+        let neto: f64 = input.trim().parse().expect("Ingresa un número válido");
+        
+        let iva = 0.19;   
+        let iva_p = calcular_iva(neto, iva);
+        let bruto = neto + iva_p;
+        
+        println!("Neto: $ {}, IVA: $ {}, Bruto: $ {}", neto, iva_p, bruto);
+    }
+    2 => {
+        for concepto in &conceptos {
+            println!("- {:?}", concepto);
+        }
+    }
+    _ => {
+        println!("Ingrese una opción válida");
     }
 }
 
-println!("Conceptos: {:?}", conceptos);
-}   
+}
